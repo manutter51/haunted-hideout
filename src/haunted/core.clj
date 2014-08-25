@@ -1,5 +1,8 @@
 (ns haunted.core
-  (require [haunted.util :as util]))
+  (require [haunted.util :as util]
+           [haunted.rooms :as rooms]
+           [haunted.commands :as cmd]
+           [clojure.string :as str]))
 
 (def prompt "::> ")
 
@@ -21,11 +24,20 @@
     (flush))
   (read-line))
 
-(defn main-loop [input]
-  (when (not= input "quit")
-    (recur (get-input prompt))))
+(defn init-game-state []
+  {:running? true
+   :location :outs-front-yard
+   :rooms (rooms/init)
+   :commands (cmd/init)})
+
+;; Stole this pattern from Erlang: instead of storing game state in a global
+;; mutable var or atom, just keep passing it back in as the arg to the main
+;; loop fn.
+(defn main-loop [game-state]
+  (when (:running? game-state)
+    (recur (cmd/handle (str/lower-case (get-input prompt)) game-state))))
 
 (defn -main [& args]
   (println (util/trim-long splash-msg))
   (println)
-  (main-loop (get-input prompt)))
+  (main-loop (init-game-state)))
