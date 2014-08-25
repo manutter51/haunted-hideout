@@ -3,11 +3,13 @@
             [haunted.util :refer :all]))
 
 (deftest room-builder-test
+
   (testing "Room-builder catches duplicate keys."
     (let [a {:a "a" :b "b"}
           b {:a "a" :c "c"}]
       (is (thrown-with-msg? Exception #"already defined key\(s\) a"
             ((room-builder "Test" a) b)))))
+
   (testing "Room-builder combines maps"
     (let [a {:a "a" :b "b"}
           c {:c "c" :d "d"}]

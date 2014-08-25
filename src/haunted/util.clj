@@ -12,3 +12,6 @@
                              ": already defined key(s) "
                              (str/join ", " (map name conflicts))))))
       (merge m1 m2))))
+
+(defn trim-long [description]
+  (str/join "\n" (map str/trim (re-seq #".*\n" description))))
