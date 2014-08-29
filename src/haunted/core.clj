@@ -27,7 +27,9 @@
 (defn init-game-state []
   {:running? true
    :location :outs-front-yard
+   :inventory []
    :rooms (rooms/init)
+   :visited? #{}
    :commands (cmd/init)})
 
 ;; Stole this pattern from Erlang: instead of storing game state in a global

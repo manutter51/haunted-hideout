@@ -1,0 +1,32 @@
+<S> = VERB (* [OBJECT QUALIFIER?] *)
+<VERB> = MOVE | UI
+
+<UI> = QUIT | INV | EXAMINE | LOOK | 'save' | 'load'
+EXAMINE = <EXAMINE_VERB> SPACES WORDS
+EXAMINE_VERB = "look" | "look at" | "examine"
+LOOK = "look" | "look here" | "l"
+<SPACES> = <#"\s+">
+<WORDS> = WORD [SPACES WORDS]
+<WORD> = #"\w+"
+INV = 'i' | 'inv' | 'inventory'
+QUIT = 'q' | 'quit'
+
+MOVE = [<GO>] DIR (* [GOPREP DESTINATION] *)
+GO = 'go' SPACES
+<DIR> = NORTH | SOUTH | EAST | WEST |
+      NORTHEAST | NORTHWEST | SOUTHEAST | SOUTHWEST |
+      UP | DOWN | IN | OUT
+NORTH = 'n' | 'north'
+SOUTH = 's' | 'south'
+EAST = 'e' | 'east'
+WEST = 'w' | 'west'
+NORTHEAST = 'ne' | 'northeast'
+NORTHWEST = 'nw' | 'northwest'
+SOUTHEAST = 'se' | 'southeast'
+SOUTHWEST = 'sw' | 'southwest'
+UP = 'u' | 'up'
+DOWN = 'd' | 'down'
+IN = 'enter' | 'in'
+OUT = 'exit' | 'out'
+
+
