@@ -21,5 +21,6 @@
 
 (defn init []
   [basic/look
+   basic/examine
    basic/quit
    move/move])

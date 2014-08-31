@@ -3,7 +3,7 @@
 
 <UI> = QUIT | INV | EXAMINE | LOOK | 'save' | 'load'
 EXAMINE = <EXAMINE_VERB> SPACES WORDS
-EXAMINE_VERB = "look" | "look at" | "examine"
+EXAMINE_VERB = "look" | "look at" | "examine" | "exa" | "l at"
 LOOK = "look" | "look here" | "l"
 <SPACES> = <#"\s+">
 <WORDS> = WORD [SPACES WORDS]

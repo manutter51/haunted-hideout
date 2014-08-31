@@ -1,0 +1,12 @@
+<S> = <EOL*> BLOCKS
+<BLOCKS> = BLOCK | MULTIPLE
+<MULTIPLE> = BLOCK [<EOB> MULTIPLE]
+(* BLOCK and CONTINUATION have the same definition, except that
+   BLOCK is captured and CONTINUATION isn't. This lets us accumulate
+   multiple lines within 1 block without having each successive
+   line nested 1 level deeper in the tree. *)
+BLOCK = LINE [<EOL> [CONTINUATION]]
+<CONTINUATION> = LINE [<EOL> [CONTINUATION]]
+<LINE> = #"[^\n\r]+"
+<EOB> = EOL EOL
+<EOL> = #"[\n\r]"
