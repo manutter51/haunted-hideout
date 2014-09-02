@@ -4,6 +4,12 @@ An old-school text adventure game designed to be run from the command line. No, 
 
 ## Usage
 
+  1. Install Leiningen from http://leiningen.org (follow directions on the page).
+  2. Clone or download this repository.
+  3. Open a terminal window or Command Prompt.
+  4. Change directories to the haunted-hideout directory (when you type `ls` or `DIR` you should see the project.clj file).
+  5. Start the game by typing
+
     lein run
 
 ## License

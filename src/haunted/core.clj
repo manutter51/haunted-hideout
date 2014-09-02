@@ -2,7 +2,12 @@
   (require [haunted.util :as util]
            [haunted.rooms :as rooms]
            [haunted.commands :as cmd]
-           [clojure.string :as str]))
+           [clojure.string :as str]
+           [clojure.tools.nrepl.server :as repl]))
+
+(defonce repl (repl/start-server :port 7888))
+
+(def debug-state (atom nil))
 
 (def prompt "::> ")
 
@@ -39,10 +44,12 @@ Wherever here is.")
 ;; loop fn.
 (defn main-loop [game-state]
   (when (:running? game-state)
+    (reset! debug-state game-state)
     (recur (cmd/handle (str/lower-case (get-input prompt)) game-state))))
 
 (defn -main [& args]
   (println "\n")
   (println (util/trim-long splash-msg))
   (println)
-  (main-loop (init-game-state)))
+  (main-loop (init-game-state))
+  (shutdown-agents))
