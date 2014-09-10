@@ -7,7 +7,7 @@
 
 (defonce repl (repl/start-server :port 7888))
 
-(def debug-state (atom nil))
+(def debug-state (atom nil))                                ; for use by repl
 
 (def prompt "::> ")
 
@@ -52,4 +52,5 @@ Wherever here is.")
   (println (util/trim-long splash-msg))
   (println)
   (main-loop (init-game-state))
+  (repl/stop-server repl)
   (shutdown-agents))
